@@ -21,6 +21,10 @@ describe 'Object'
     it 'should support short-hand function syntax'
       { foo: 1 }.map('a + 1').foo.should.eql 2
     end
+    
+    it 'should throw a TypeError when anything but a function or string is passed'
+      -{ ['foo', 'bar'].map(null) }.should.throw_error TypeError, 'function expected'
+    end
   end
 
   describe '#each()'
