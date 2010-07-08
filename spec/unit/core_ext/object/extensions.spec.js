@@ -59,5 +59,22 @@ describe 'Object'
       Object.mergeDeep({ foo: 'bar' }).should.eql { foo: 'bar' }
     end
   end
-end
 
+  describe '.clone()'
+    it 'should perform a clone'
+      var a = { user: { name: { first: 'pau' }}}
+      var b = Object.clone(a);
+
+      a.user.should.eql b.user
+      a.user.name.first.should.eql b.user.name.first
+
+      b.user.name.first = 'tj';
+      a.user.name.first.should.eql 'pau'
+      b.user.name.first.should.eql 'tj'
+
+      delete b.user
+      a.user.should.not.be undefined
+      b.user.should.be undefined
+    end
+  end
+end
