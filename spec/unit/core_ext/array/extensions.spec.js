@@ -48,6 +48,22 @@ describe 'Array'
     end
   end
 
+  describe '#intersect()'
+    it 'Should intersect two arrays'
+      ['foo', 'bar'].intersect(['foo']).should.eql ['foo']
+      ['foo', 'bar', 'nope', 'zemba'].intersect(['foo', 'nope', 'hey']).should.eql ['foo', 'nope']
+    end
+
+    it 'should deal with empty arrays'
+      [].intersect(['foo']).should.eql []
+      ['foo', 'bar', 'nope', 'zemba'].intersect([]).should.eql []
+    end
+
+    it 'should return [] when no intersection'
+      ['foo', 'bar', 'nope', 'zemba'].intersect(['hey', 'you']).should.eql []
+    end
+  end
+
   describe '#first'
     it 'should equal the first element of the array'
       [1,2,3].first.should.equal 1
