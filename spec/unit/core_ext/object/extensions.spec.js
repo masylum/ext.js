@@ -76,5 +76,23 @@ describe 'Object'
       a.user.should.not.be undefined
       b.user.should.be undefined
     end
+
+    it 'should deal with Date, Regex, Function, Booleans ...'
+      var a = {x: new Date(), y: /.*/, z:function(){return 'foo'}, foo: false}
+      var b = Object.clone(a);
+
+      a.should.eql b
+      a.x.should.eql b.x
+      a.x.constructor.should.eql b.x.constructor
+
+      a.y.should.eql b.y
+      a.y.constructor.should.eql b.y.constructor
+
+      a.z.should.eql b.z
+      a.z.constructor.should.eql b.z.constructor
+
+      a.foo.should.eql b.foo
+      a.foo.constructor.should.eql b.foo.constructor
+    end
   end
 end
