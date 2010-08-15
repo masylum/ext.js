@@ -60,6 +60,21 @@ describe 'Object'
     end
   end
 
+  describe '.isEmpty()'
+    it 'should detect if a object is empty'
+      Object.isEmpty({}).should.eql true
+      Object.isEmpty([]).should.eql true
+      Object.isEmpty(null).should.eql true
+      Object.isEmpty(false).should.eql true
+      Object.isEmpty(undefined).should.eql true
+      Object.isEmpty({foo:'bar'}).should.eql false
+      Object.isEmpty('foo').should.eql false
+      Object.isEmpty(10).should.eql false
+      Object.isEmpty(0).should.eql false
+    end
+  end
+
+
   describe '.clone()'
     it 'should perform a clone'
       var a = { user: { name: { first: 'pau' }}}
